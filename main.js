@@ -1,12 +1,14 @@
 class Window{
     //Constructor builds an empty window and returns the main div
-    constructor(id){
+    constructor(id, width = "500px", height = "200px", top = "10%", left = "10%"){
         this.element = document.createElement("div");
         this.id = id;
         this.element.id = id;
         this.element.className = "window";
-        this.element.style.top = "10%";
-        this.element.style.left = "10%";
+        this.element.style.top = top;
+        this.element.style.left = left;
+        this.element.style.width = width;
+        this.element.style.height = height;
 
         this.element.appendChild(this.createTopBar());
 
@@ -70,6 +72,6 @@ class Window{
 }
 
 function createWindow(id){
-    win = new Window(id);
+    win = new Window(id, "500px", "200px", "15%", "25%");
     document.body.appendChild(win);
 }
