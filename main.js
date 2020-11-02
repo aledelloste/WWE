@@ -11,6 +11,8 @@ class Window{
         this.element.style.height = height;
         this.title = title;
 
+        this.element.addEventListener("mousedown", () => this.select());
+
         this.element.appendChild(this.createTopBar());
 
         return this.element;
@@ -73,6 +75,13 @@ class Window{
         var elmnt = this.element.children[0];
         elmnt.onmouseup = null;
         elmnt.onmousemove = null;
+      }
+
+      select(){
+          this.element.style.zIndex = 1;
+      }
+      deselect(){
+          this.element.style.zIndex = 0;
       }
 
 }
