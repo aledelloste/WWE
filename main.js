@@ -1,4 +1,5 @@
 class Window{
+    //Constructor builds an empty window and returns the main div
     constructor(id){
         this.element = document.createElement("div");
         this.id = id;
@@ -12,6 +13,7 @@ class Window{
         return this.element;
     }
 
+    //Create the top bar of the window
     createTopBar(){
         var bar = document.createElement("div");
         bar.className = "window topBar";
@@ -30,9 +32,9 @@ class Window{
         return bar;
     }
 
+    //Destroy the window
     destroyWindow(){
         win = this.element.remove();
-        wins.splice(wins.indexOf(win, 1));
     }
 
     drag(e){
@@ -43,17 +45,11 @@ class Window{
         this.pos4 = e.clientY;
         this.element.children[0].onmouseup = e => {this.closeDragElement()};
         this.element.children[0].onmousemove = e => {this.elementDrag(e)};
-        // addEventListener("mouseup", e => {
-        //     closeDragElement(id);
-        // });
-        //document.getElementById(id).addEventListener("mousemove", e => {
-        //     elementDrag(e, id);
-        // });
     }
 
       elementDrag(e) {
         e = e || window.event;
-        //e.preventDefault();
+        e.preventDefault();
         // calculate the new cursor position:
         this.pos1 = this.pos3 - e.clientX;
         this.pos2 = this.pos4 - e.clientY;
@@ -75,7 +71,5 @@ class Window{
 
 function createWindow(id){
     win = new Window(id);
-    console.log(win);
-    console.log(document.body);
     document.body.appendChild(win);
 }
