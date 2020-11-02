@@ -1,6 +1,6 @@
 class Window{
     //Constructor builds an empty window and returns the main div
-    constructor(id, width = "500px", height = "200px", top = "10%", left = "10%"){
+    constructor(id, width = "500px", height = "200px", top = "10%", left = "10%", title = ""){
         this.element = document.createElement("div");
         this.id = id;
         this.element.id = id;
@@ -9,6 +9,7 @@ class Window{
         this.element.style.left = left;
         this.element.style.width = width;
         this.element.style.height = height;
+        this.title = title;
 
         this.element.appendChild(this.createTopBar());
 
@@ -30,6 +31,11 @@ class Window{
         img.className = "barIcon";
         img.style.left = "2px";
         bar.appendChild(img);
+
+        var title = document.createElement("text");
+        title.textContent = this.title;
+        title.className = "windowTitle"
+        bar.appendChild(title);
 
         return bar;
     }
@@ -72,6 +78,6 @@ class Window{
 }
 
 function createWindow(id){
-    win = new Window(id, "500px", "200px", "15%", "25%");
+    win = new Window(id, "500px", "200px", "15%", "25%", "Finder");
     document.body.appendChild(win);
 }
