@@ -114,7 +114,23 @@ class Window{
 
 }
 
+class TextEditor extends Window{
+    constructor(){
+        super("textEditor", "500px", "500px", undefined, undefined, "Text Editor");
+        var body = document.createElement("TEXTAREA");
+        body.style.backgroundColor = "white";
+        body.style.width = "100%";
+        body.style.height = "100%";
+
+        this.element.appendChild(body);
+    }
+}
+
 function createWindow(id){
     win = new Window(id, "500px", "200px", "15%", "25%", "Finder");
     document.body.appendChild(win.element);
+}
+function createEditor(id) {
+    txt = new TextEditor();
+    document.body.appendChild(txt.element);
 }
