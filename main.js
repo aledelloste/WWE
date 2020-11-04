@@ -53,8 +53,10 @@ class Window{
         // get the mouse cursor position at startup:
         this.pos3 = e.clientX;
         this.pos4 = e.clientY;
-        this.element.children[0].onmouseup = e => {this.closeDragElement()};
-        this.element.children[0].onmousemove = e => {this.elementDrag(e)};
+        //this.element.children[0]
+        window.onmouseup = e => {this.closeDragElement()};
+        //this.element.children[0]
+        window.onmousemove = e => {this.elementDrag(e)};
     }
 
       elementDrag(e) {
@@ -72,9 +74,12 @@ class Window{
 
       closeDragElement() {
         // stop moving when mouse button is released:
-        var elmnt = this.element.children[0];
-        elmnt.onmouseup = null;
-        elmnt.onmousemove = null;
+        // var elmnt = this.element.children[0];
+        // elmnt.onmouseup = null;
+        // elmnt.onmousemove = null;
+
+        window.onmousemove = null;
+        window.onmouseup = null;
       }
 
       select(){
