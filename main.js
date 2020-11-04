@@ -14,8 +14,6 @@ class Window{
         this.element.addEventListener("mousedown", () => this.select());
 
         this.element.appendChild(this.createTopBar());
-
-        return this.element;
     }
 
     //Create the top bar of the window
@@ -93,5 +91,5 @@ class Window{
 
 function createWindow(id){
     win = new Window(id, "500px", "200px", "15%", "25%", "Finder");
-    document.body.appendChild(win);
+    document.body.appendChild(win.element);
 }
