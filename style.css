@@ -29,6 +29,15 @@
     width: 70px;
     height: auto;
 }
+.resizeIcon{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 10px;
+    height: 10px;
+    background-color: #555;
+    cursor: nwse-resize;
+}
 /* #finder{
     background-color: #888;
     top: 10%;

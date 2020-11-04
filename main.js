@@ -1,4 +1,5 @@
 class Window{
+
     //Constructor builds an empty window and returns the main div
     constructor(id, width = "500px", height = "200px", top = "10%", left = "10%", title = ""){
         this.element = document.createElement("div");
@@ -14,6 +15,30 @@ class Window{
         this.element.addEventListener("mousedown", () => this.select());
 
         this.element.appendChild(this.createTopBar());
+
+        var rsz = document.createElement("div");
+        rsz.className = "resizeIcon";
+        rsz.addEventListener("mousedown", e => this.resize());
+        this.element.appendChild(rsz);
+
+    }
+    resize(e){
+        e = e || window.event;
+        e.preventDefault();
+
+        window.onmouseup = e => {this.closeDragElement()};
+        window.onmousemove = e => {this.elementResize(e)};
+    }
+    elementResize(e){
+        var w = e.pageX - this.element.getBoundingClientRect().left;
+        var h = e.pageY - this.element.getBoundingClientRect().top;
+
+        if(w > 100){
+            this.element.style.width = w + 'px';
+        }
+        if (h > 50) {
+            this.element.style.height = h + 'px';
+        }
     }
 
     //Create the top bar of the window
