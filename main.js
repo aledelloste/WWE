@@ -139,6 +139,28 @@ class TextEditor extends Window{
     }
 }
 
+class Alert extends Window{
+    constructor(options, func){
+        super("alert", "400px", "150px", undefined, undefined, "Alert!", false, undefined, undefined);
+        var body = document.createElement("div");
+        body.style.backgroundColor = "#ccc";
+        body.style.height = "100%";
+        var buttons = [];
+        for (var i = 0; i < options.length; i++) {
+            var b = document.createElement("button");
+            b.innerHTML = options[i];
+            b.onclick = func[i];
+            b.className = "dialogButton"
+            b.style.position = "absolute";
+            b.style.top = "80%";
+            b.style.left = ((i*15) + 5) + "%";
+            body.appendChild(b);
+        }
+
+        this.element.appendChild(body);
+    }
+}
+
 function createWindow(id){
     win = new Window(id, "500px", "200px", "15%", "25%", "Finder", false, undefined, undefined);
     document.body.appendChild(win.element);
@@ -146,4 +168,8 @@ function createWindow(id){
 function createEditor(id) {
     txt = new TextEditor();
     document.body.appendChild(txt.element);
+}
+function createAlert(){
+    var al = new Alert(["Win", "Txt"], [createWindow, createEditor]);
+    document.body.appendChild(al.element);
 }
