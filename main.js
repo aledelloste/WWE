@@ -1,7 +1,7 @@
 class Window{
 
     //Constructor builds an empty window and returns the main div
-    constructor(id, width = "500px", height = "200px", top = "10%", left = "10%", title = ""){
+    constructor(id, width = "500px", height = "200px", top = "10%", left = "10%", title = "", isResizable = true, min_w = 100, min_h = 50){
         this.element = document.createElement("div");
         this.id = id;
         this.element.id = id;
@@ -11,17 +11,24 @@ class Window{
         this.element.style.width = width;
         this.element.style.height = height;
         this.title = title;
+        this.isResizable = isResizable;
+        this.min_w = min_w;
+        this.min_h = min_h;
 
         this.element.addEventListener("mousedown", () => this.select());
 
         this.element.appendChild(this.createTopBar());
 
-        var rsz = document.createElement("div");
-        rsz.className = "resizeIcon";
-        rsz.addEventListener("mousedown", e => this.resize());
-        this.element.appendChild(rsz);
+        if(this.isResizable){
+            var rsz = document.createElement("div");
+            rsz.className = "resizeIcon";
+            rsz.addEventListener("mousedown", e => this.resize());
+            this.element.appendChild(rsz);
+        }
 
     }
+
+
     resize(e){
         e = e || window.event;
         e.preventDefault();
@@ -33,10 +40,10 @@ class Window{
         var w = e.pageX - this.element.getBoundingClientRect().left;
         var h = e.pageY - this.element.getBoundingClientRect().top;
 
-        if(w > 100){
+        if(w > this.min_w){
             this.element.style.width = w + 'px';
         }
-        if (h > 50) {
+        if (h > this.min_h) {
             this.element.style.height = h + 'px';
         }
     }
@@ -116,7 +123,7 @@ class Window{
 
 class TextEditor extends Window{
     constructor(){
-        super("textEditor", "500px", "500px", undefined, undefined, "Text Editor");
+        super("textEditor", "500px", "500px", undefined, undefined, "Text Editor", true, 100, 100);
         var body = document.createElement("TEXTAREA");
         body.style.backgroundColor = "white";
         body.style.width = "100%";
@@ -127,7 +134,7 @@ class TextEditor extends Window{
 }
 
 function createWindow(id){
-    win = new Window(id, "500px", "200px", "15%", "25%", "Finder");
+    win = new Window(id, "500px", "200px", "15%", "25%", "Finder", false, undefined, undefined);
     document.body.appendChild(win.element);
 }
 function createEditor(id) {
