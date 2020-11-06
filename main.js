@@ -92,14 +92,20 @@ class Window{
       elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
-        this.pos1 = this.pos3 - e.clientX;
-        this.pos2 = this.pos4 - e.clientY;
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-        // set the element's new position:
-        this.element.style.top = (this.element.offsetTop - this.pos2) + "px";
-        this.element.style.left = (this.element.offsetLeft - this.pos1) + "px";
+
+        if((e.clientX > 10 && e.clientX < window.innerWidth - 10)
+            &&
+            (e.clientY > 10 && e.clientY < window.innerHeight - 10)){
+            // calculate the new cursor position:
+            this.pos1 = this.pos3 - e.clientX;
+            this.pos2 = this.pos4 - e.clientY;
+            this.pos3 = e.clientX;
+            this.pos4 = e.clientY;
+            // set the element's new position:
+            this.element.style.top = (this.element.offsetTop - this.pos2) + "px";
+            this.element.style.left = (this.element.offsetLeft - this.pos1) + "px";
+        }
+
       }
 
       closeDragElement() {
