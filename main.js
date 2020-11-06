@@ -95,7 +95,7 @@ class Window{
 
         if((e.clientX > 10 && e.clientX < window.innerWidth - 10)
             &&
-            (e.clientY > 10 && e.clientY < window.innerHeight - 10)){
+            (e.clientY > 30 && e.clientY < window.innerHeight - 10)){
             // calculate the new cursor position:
             this.pos1 = this.pos3 - e.clientX;
             this.pos2 = this.pos4 - e.clientY;
@@ -160,6 +160,30 @@ class Alert extends Window{
         this.element.appendChild(body);
     }
 }
+class ManuItem{
+    constructor(name, func){
+        this.name = name;
+        this.func = func;
+    }
+}
+class MenuBar{
+    constructor(){
+        this.items = [];
+        this.element = document.createElement("div");
+        this.element.className = "menuBar"
+    }
+    addItem(item){
+        this.items.push(item);
+    }
+    render(){
+        for (var i of this.items) {
+            var it = document.createElement("div");
+            it.innerHTML = i.name;
+            it.className = "menuItem";
+            this.element.appendChild(it);
+        }
+    }
+}
 
 function createWindow(id){
     win = new Window(id, "500px", "200px", "15%", "25%", "Finder", false, undefined, undefined);
@@ -172,4 +196,14 @@ function createEditor(id) {
 function createAlert(){
     var al = new Alert(["Win", "Txt"], [createWindow, createEditor]);
     document.body.appendChild(al.element);
+}
+function init(){
+    var m = new MenuBar();
+    m.addItem(new ManuItem("System", undefined));
+    m.addItem(new ManuItem("Menu1", undefined));
+    m.addItem(new ManuItem("Menu2", undefined));
+    m.addItem(new ManuItem("Menu3", undefined));
+    m.addItem(new ManuItem("Menu4", undefined));
+    m.render();
+    document.body.appendChild(m.element);
 }
