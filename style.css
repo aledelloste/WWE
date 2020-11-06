@@ -44,6 +44,16 @@ body{
     background-color: #555;
     cursor: nwse-resize;
 }
+.dialogButton{
+    width: 50px;
+    height: 20px;
+    border: 5px;
+    background-color: #fff;
+    box-shadow: 2px 2px #999
+}
+.dialogButton:active{
+    background-color: black
+}
 /* #finder{
     background-color: #888;
     top: 10%;
