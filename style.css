@@ -54,6 +54,10 @@ body{
 .dialogButton:active{
     background-color: black
 }
+.menu{
+    cursor: default;
+    z-index: 2;
+}
 .menuBar{
     background-color: #eee;
     width : 100%;
@@ -63,7 +67,6 @@ body{
     left: 0;
     color: blue;
     display: inline;
-    z-index: 2;
 }
 .menuItem{
     height: 100%;
