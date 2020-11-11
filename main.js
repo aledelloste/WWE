@@ -166,9 +166,21 @@ class ManuItem{
         this.func = func;
     }
 }
-class MenuBar{
+class Menu{
     constructor(){
         this.items = [];
+        this.element;
+    }
+    addItem(item){
+        this.items.push(item);
+    }
+    render(){
+
+    }
+}
+class MenuBar extends Menu{
+    constructor(){
+        super();
         this.element = document.createElement("div");
         this.element.className = "menuBar"
     }
