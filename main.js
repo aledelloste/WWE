@@ -169,7 +169,7 @@ class ManuItem{
         var it = document.createElement("div");
         it.innerHTML = this.name;
         it.className = "menuItem";
-        it.addEventListener("mousedown", () => {alert("AAAAAAA")})
+        it.addEventListener("mousedown", () => {this.func();})
         return it;
     }
 }
@@ -177,6 +177,7 @@ class Menu{
     constructor(){
         this.items = [];
         this.element;
+        this.opened = false;
     }
     addItem(item){
         this.items.push(item);
@@ -186,6 +187,19 @@ class Menu{
         this.element.className = "menu";
         for (var i of this.items) {
             this.element.appendChild(i.render());
+        }
+        document.body.appendChild(this.element);
+    }
+    destroy(){
+        this.element.remove();
+    }
+    toggle(){
+        if(this.opened){
+            this.opened = false;
+            this.destroy();
+        }else{
+            this.opened = true;
+            this.render();
         }
     }
 }
@@ -218,20 +232,19 @@ function createAlert(){
     document.body.appendChild(al.element);
 }
 function init(){
+
+    var n = new Menu();
+    n.addItem(new ManuItem("System Informations", function(){alert("AAAAAA")}));
+    n.addItem(new ManuItem("SubMenu2", undefined));
+    n.addItem(new ManuItem("SubMenu3", undefined));
+    n.addItem(new ManuItem("Credits", undefined));
+
     var m = new MenuBar();
-    m.addItem(new ManuItem("System", undefined));
+    m.addItem(new ManuItem("System", function(){n.toggle()}));
     m.addItem(new ManuItem("Menu1", undefined));
     m.addItem(new ManuItem("Menu2", undefined));
     m.addItem(new ManuItem("Menu3", undefined));
     m.addItem(new ManuItem("Menu4", undefined));
     m.render();
     document.body.appendChild(m.element);
-
-    // var n = new Menu();
-    // n.addItem(new ManuItem("Menu1", undefined));
-    // n.addItem(new ManuItem("Menu2", undefined));
-    // n.addItem(new ManuItem("Menu3", undefined));
-    // n.addItem(new ManuItem("Menu4", undefined));
-    // n.render();
-    // document.body.appendChild(n.element);
 }

@@ -61,6 +61,10 @@ body{
     display: flex;
     flex-direction: column;
     width: 10%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 10%;
 }
 .menuBar{
     width : 100%;
