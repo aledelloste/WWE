@@ -165,6 +165,13 @@ class ManuItem{
         this.name = name;
         this.func = func;
     }
+    render(){
+        var it = document.createElement("div");
+        it.innerHTML = this.name;
+        it.className = "menuItem";
+        it.addEventListener("mousedown", () => {alert("AAAAAAA")})
+        return it;
+    }
 }
 class Menu{
     constructor(){
@@ -175,24 +182,25 @@ class Menu{
         this.items.push(item);
     }
     render(){
-
+        this.element = document.createElement("div");
+        this.element.className = "menu";
+        for (var i of this.items) {
+            this.element.appendChild(i.render());
+        }
     }
 }
 class MenuBar extends Menu{
     constructor(){
         super();
         this.element = document.createElement("div");
-        this.element.className = "menuBar"
+        this.element.className = "menu menuBar"
     }
     addItem(item){
         this.items.push(item);
     }
     render(){
         for (var i of this.items) {
-            var it = document.createElement("div");
-            it.innerHTML = i.name;
-            it.className = "menuItem";
-            this.element.appendChild(it);
+            this.element.appendChild(i.render());
         }
     }
 }
@@ -218,4 +226,12 @@ function init(){
     m.addItem(new ManuItem("Menu4", undefined));
     m.render();
     document.body.appendChild(m.element);
+
+    // var n = new Menu();
+    // n.addItem(new ManuItem("Menu1", undefined));
+    // n.addItem(new ManuItem("Menu2", undefined));
+    // n.addItem(new ManuItem("Menu3", undefined));
+    // n.addItem(new ManuItem("Menu4", undefined));
+    // n.render();
+    // document.body.appendChild(n.element);
 }
