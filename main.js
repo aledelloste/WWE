@@ -44,10 +44,20 @@ function createAlert(){
     var al = new Alert(["Win", "Txt"], [createWindow, createEditor]);
     document.body.appendChild(al.element);
 }
+function infoWin() {
+    var info = new Window(undefined, "500px", "200px", "15%", "25%", "System Informations", false, undefined, undefined);
+    var int = document.createElement("div");
+    int.style.backgroundColor = "#ccc";
+    int.style.height = "100%";
+    int.style.textAlign = "center";
+    int.innerHTML = '<br><b>Web Window Environment</b><br>A simple useless desktop simulator based on HTML, CSS, and Javascript<br>Created by <a href="https://github.com/aledelloste">aledello</a><br>View source code in <a href="https://github.com/aledelloste/WWE">GitHub repo</a>';
+    info.element.appendChild(int);
+    document.body.appendChild(info.element);
+}
 function init(){
 
     var n = new Menu();
-    n.addItem(new ManuItem("System Informations", function(){alert("AAAAAA")}));
+    n.addItem(new ManuItem("System Informations", function(){infoWin()}));
     n.addItem(new ManuItem("SubMenu2", undefined));
     n.addItem(new ManuItem("SubMenu3", undefined));
     n.addItem(new ManuItem("Credits", undefined));
