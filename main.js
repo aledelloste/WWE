@@ -54,11 +54,40 @@ function infoWin() {
     info.element.appendChild(int);
     document.body.appendChild(info.element);
 }
+function openConfig(){
+    var win = new Window(undefined, "500px", "500px", "15%", "25%", "Configurations", true, undefined, undefined);
+    var body = document.createElement("div");
+    body.style.backgroundColor = "#ccc";
+    body.style.height = "100%";
+
+    var bg = document.createElement("div");
+
+    var bg_label = document.createElement("label");
+    bg_label.for = "bg_color";
+    bg_label.innerHTML = "Background Color";
+    bg.appendChild(bg_label);
+
+    var bg_picker = document.createElement("input");
+    bg_picker.type = "color";
+    bg_picker.name = "bg_color";
+    bg_picker.value = "#000";
+    bg_picker.addEventListener("change", e => {
+        document.body.style.backgroundColor = e.target.value;
+    })
+
+    bg.appendChild(bg_picker);
+
+    body.appendChild(bg);
+
+    win.element.appendChild(body);
+    document.body.appendChild(win.element);
+}
+
 function init(){
 
     var n = new Menu();
     n.addItem(new ManuItem("System Informations", function(){infoWin()}));
-    n.addItem(new ManuItem("SubMenu2", undefined));
+    n.addItem(new ManuItem("Configure...", openConfig));
     n.addItem(new ManuItem("SubMenu3", undefined));
     n.addItem(new ManuItem("Credits", undefined));
 
