@@ -85,20 +85,23 @@ function openConfig(){
 
 function init(){
 
+    var a = new Menu();
+    a.addItem(new MenuItem("AAAAAA", function(){infoWin()}));
+
     var n = new Menu();
-    n.addItem(new MenuItem("System Informations", function(){infoWin()}));
+    n.addItem(new MenuItem("System Informations", function(){infoWin(); n.toggle()}, undefined));
     n.addItem(new MenuItem("Configure...", openConfig));
-    n.addItem(new MenuItem("SubMenu3", undefined));
+    n.addItem(new MenuItem("SubMenu3", undefined, a));
+
     n.addItem(new MenuItem("Credits", undefined));
 
 
     var appMenu = new Menu();
-    appMenu.addItem(new MenuItem("Credits", undefined));
-    appMenu.addItem(new MenuItem("Text Editor", undefined));
+    appMenu.addItem(new MenuItem("Text Editor", function(){createEditor('editor'); appMenu.toggle()}));
 
     var m = new MenuBar();
-    m.addItem(new MenuItem("System", function(){n.toggle()}));
-    m.addItem(new MenuItem("Applications", function(){appMenu.toggle()}));
+    m.addItem(new MenuItem("System", undefined, n));
+    m.addItem(new MenuItem("Applications", undefined, appMenu));
     m.addItem(new MenuItem("Menu2", undefined));
     m.addItem(new MenuItem("Menu3", undefined));
     m.addItem(new MenuItem("Menu4", undefined));

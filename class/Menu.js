@@ -3,6 +3,8 @@ class Menu{
         this.items = [];
         this.element;
         this.opened = false;
+        this.positionTop;
+        this.positionLeft;
     }
     addItem(item){
         this.items.push(item);
@@ -10,6 +12,10 @@ class Menu{
     render(){
         this.element = document.createElement("div");
         this.element.className = "menu";
+        //this.element.style.position = "absolute";
+        this.element.style.left = this.positionLeft;
+        this.element.style.top = this.positionTop+2;
+        alert(this.positionTop);
         for (var i of this.items) {
             this.element.appendChild(i.render());
         }
@@ -17,6 +23,14 @@ class Menu{
     }
     destroy(){
         this.element.remove();
+        for (var item of this.items) {
+            if(item.subMenu)
+                item.closeSub();
+        }
+    }
+    close(){
+        this.opened = false;
+        this.destroy();
     }
     toggle(){
         if(this.opened){
