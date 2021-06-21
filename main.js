@@ -86,17 +86,22 @@ function openConfig(){
 function init(){
 
     var n = new Menu();
-    n.addItem(new ManuItem("System Informations", function(){infoWin()}));
-    n.addItem(new ManuItem("Configure...", openConfig));
-    n.addItem(new ManuItem("SubMenu3", undefined));
-    n.addItem(new ManuItem("Credits", undefined));
+    n.addItem(new MenuItem("System Informations", function(){infoWin()}));
+    n.addItem(new MenuItem("Configure...", openConfig));
+    n.addItem(new MenuItem("SubMenu3", undefined));
+    n.addItem(new MenuItem("Credits", undefined));
+
+
+    var appMenu = new Menu();
+    appMenu.addItem(new MenuItem("Credits", undefined));
+    appMenu.addItem(new MenuItem("Text Editor", undefined));
 
     var m = new MenuBar();
-    m.addItem(new ManuItem("System", function(){n.toggle()}));
-    m.addItem(new ManuItem("Menu1", undefined));
-    m.addItem(new ManuItem("Menu2", undefined));
-    m.addItem(new ManuItem("Menu3", undefined));
-    m.addItem(new ManuItem("Menu4", undefined));
+    m.addItem(new MenuItem("System", function(){n.toggle()}));
+    m.addItem(new MenuItem("Applications", function(){appMenu.toggle()}));
+    m.addItem(new MenuItem("Menu2", undefined));
+    m.addItem(new MenuItem("Menu3", undefined));
+    m.addItem(new MenuItem("Menu4", undefined));
     m.render();
     document.body.appendChild(m.element);
 }
