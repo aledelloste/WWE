@@ -1,5 +1,7 @@
+var sysTray;
 function init(){
-
+    //Create a SysTray bar
+    sysTray = new SysTray(SysTray.SysTrayPosition.TOP_EDGE);
 }
 
 // Old code as referece
